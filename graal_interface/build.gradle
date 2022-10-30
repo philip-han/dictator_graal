@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'org.graalvm.buildtools.native'
+}
+
+dependencies {
+    implementation project(':speechcore')
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation "io.insert-koin:koin-core:$koin_version"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+def Properties properties = new Properties()
+properties.load(project.rootProject.file("local.properties").newDataInputStream())
+ext {
+    staticJDK = properties.getProperty("staticJdk")
+    temp = properties.getProperty("temp")
+    if (file("build/native/nativeCompile/tmp/JNIHeaderDirectives.cap").exists()) capCache = "UseCAPCache" else capCache = "NewCAPCache"
+}
+
+task copyObjectFile() {
+    doLast {
+        copy {
+            from fileTree("$temp").include("**/graal_interface.o").files
+            into "build/native/nativeCompile"
+        }
+        project.delete(file("$temp").listFiles())
+    }
+}
+
+nativeCompile.finalizedBy(copyObjectFile)
+
+graalvmNative {
+    binaries {
+        main {
+            buildArgs.add('-H:+ReportExceptionStackTraces') 
+            buildArgs.add('-H:GenerateDebugInfo=1') 
+
+            // for llvm backend, enable next 2 lines
+            //buildArgs.add('-H:CompilerBackend=llvm') 
+            //buildArgs.add('-H:+SpawnIsolates') 
+
+            buildArgs.add('--shared') 
+            buildArgs.add('--report-unsupported-elements-at-runtime') 
+
+            buildArgs.add('--features=org.graalvm.home.HomeFinderFeature') 
+            buildArgs.add('-H:PageSize=16384') 
+            buildArgs.add("-H:+$capCache") 
+            buildArgs.add('-H:CAPCacheDir=tmp') 
+            buildArgs.add("-H:TempDirectory=$temp") 
+            buildArgs.add('-H:+ExitAfterRelocatableImageWrite') 
+
+            buildArgs.add('-Dsvm.targetName=iOS') 
+            buildArgs.add('-Dsvm.targetArch=amd64') 
+            buildArgs.add('-Dsvm.platform=org.graalvm.nativeimage.Platform$IOS_AMD64') 
+            buildArgs.add("-H:NativeLinkerOption=-L $staticJDK")
+
+            // for moshi serializer. used by java and fp http client
+            buildArgs.add("--initialize-at-build-time=okio.SegmentPool")
+
+            configurationFileDirectories.from(file("../app/build/native/agent-output/run"))
+            // additional config for kotlin_builtins
+            configurationFileDirectories.from(file("$projectDir/src/main/resources"))
+
+            useFatJar = false
+        }
+    }
+
+}

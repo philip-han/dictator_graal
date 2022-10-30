@@ -1,0 +1,78 @@
+[
+  {
+    "name": "io.ktor.network.selector.InterestSuspensionsMap",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "allDeclaredFields": true,
+    "fields": [
+      {
+        "name": "readHandlerReference",
+        "allowUnsafeAccess": true
+      },
+      {
+        "name": "writeHandlerReference",
+        "allowUnsafeAccess": true
+      },
+      {
+        "name": "connectHandlerReference",
+        "allowUnsafeAccess": true
+      },
+      {
+        "name": "acceptHandlerReference",
+        "allowUnsafeAccess": true
+      }
+    ]
+  },
+  {
+    "name": "io.ktor.utils.io.ByteBufferChannel",
+        "allDeclaredConstructors": true,
+        "allPublicConstructors": true,
+        "allDeclaredMethods": true,
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "fields": [
+          {
+            "name": "joining",
+            "allowUnsafeAccess": true
+          },
+          {
+            "name": "attachedJob",
+            "allowUnsafeAccess": true
+          }
+        ]
+  },
+  {
+    "name": "io.ktor.utils.io.pool.DefaultPool",
+        "allDeclaredConstructors": true,
+        "allPublicConstructors": true,
+        "allDeclaredMethods": true,
+        "allPublicMethods": true,
+        "allDeclaredFields": true,
+        "fields": [
+          {
+            "name": "top",
+            "allowUnsafeAccess": true
+          }
+        ]
+  },
+  {
+    "name": "io.ktor.utils.io.internal.RingBufferCapacity",
+        "allDeclaredConstructors": true,
+        "allPublicConstructors": true,
+        "allDeclaredMethods": true,
+        "allPublicMethods": true,
+        "allDeclaredFields": true
+  },
+  {
+    "name" : "kotlin.internal.jdk8.JDK8PlatformImplementations",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredFields" : true,
+    "allPublicFields" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true
+  }
+
+]
