@@ -5,6 +5,8 @@ This is a sample library component for Android and iOS mobile apps. Please refer
 
 [iOS App](https://github.com/philip-han/Great-Dictator-iOS)
 
+This module depends on `speechcore` module found in Android App, so please configure and build it first.
+
 <br>
 
 ## Instruction
