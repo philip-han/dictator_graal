@@ -11,7 +11,7 @@ You may obtain the static JDK libs by first cloning Gluon Samples.
 
 [Gluon Samples Repository](https://github.com/gluonhq/gluon-samples)
 
-Change to `HelloFX` directory and execute this Gradle command:
+Change to `HelloFX` directory and execute this command:
 
 `mvn -Pios gluonfx:compile`
 
