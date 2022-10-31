@@ -6,8 +6,8 @@
  * Detailed information about configuring a multi-project build in Gradle can be found
  * in the user manual at https://docs.gradle.org/7.5/userguide/multi_project_builds.html
  */
-
 pluginManagement {
+
     plugins {
         id 'org.graalvm.buildtools.native' version '0.9.14'
         id 'org.jetbrains.kotlin.jvm' version '1.6.10' 
@@ -17,7 +17,9 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -25,6 +27,19 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+// this breaks VS Code Gradle extension, modulePath may be hard coded to make it work.
+// comment out next the indicated block, if desired
+// ---- start
+def localProperties = new Properties()
+ext {
+    def propertiesFile1 = new File("local.properties")
+	if (propertiesFile1.exists()) new FileReader(propertiesFile1).withCloseable { localProperties.load(it) }
+}
+
 rootProject.name = 'dictator_graal'
 include('app', 'graal_interface', 'speechcore')
-project(':speechcore').projectDir = new File("/Users/fulcrum/AndroidStudioProjects/GreatDictator/speechcore")
+def modulePath = localProperties.getProperty("speechcoreModule")
+// ---- end
+
+project(':speechcore').projectDir = new File(modulePath)
