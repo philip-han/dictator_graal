@@ -1,4 +1,13 @@
-# Instruction
+# Introduction
+This is a sample library component for Android and iOS mobile apps. Please refer to [companion article](https://medium.com/@philip.han_66842/graalvm-native-image-for-mobile-development-49eb87a00eee) for more information.
+
+[Android App](https://github.com/philip-han/Great-Dictator-Android)
+
+[iOS App](https://github.com/philip-han/Great-Dictator-iOS)
+
+<br>
+
+## Instruction
 Please create `local.properties` in your project root prior to building.
 
 ```
