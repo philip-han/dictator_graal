@@ -6,6 +6,13 @@ staticJdk=<location of static JDK>
 temp=<location of tmp directory>
 ```
 
+## Tooling
+Please install [GraalVM Tools for Java - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=oracle-labs-graalvm.graalvm) first. You will need following modules once the extension is installed. You may also download and install GraalVM using this extension.
+
+![GraalVM Extension Modules](/images/graalvm_plugin_modules.png)
+
+Tested GraalVM version is 22.1.0 or lower. Higher version is not working at the moment due to modules not importing correctly. Will update as soon as that is working.
+
 ## Downloading Static JDK for ios-aarch64 and ios-x86_64
 You may obtain the static JDK libs by first cloning Gluon Samples. 
 
