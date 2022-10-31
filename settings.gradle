@@ -36,10 +36,10 @@ ext {
     def propertiesFile1 = new File("local.properties")
 	if (propertiesFile1.exists()) new FileReader(propertiesFile1).withCloseable { localProperties.load(it) }
 }
+def modulePath = localProperties.getProperty("speechcoreModule")
+// ---- end
 
 rootProject.name = 'dictator_graal'
 include('app', 'graal_interface', 'speechcore')
-def modulePath = localProperties.getProperty("speechcoreModule")
-// ---- end
 
 project(':speechcore').projectDir = new File(modulePath)
