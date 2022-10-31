@@ -13,6 +13,8 @@ Please install [GraalVM Tools for Java - Visual Studio Marketplace](https://
 
 Tested GraalVM version is 22.1.0 or lower. Higher version is not working at the moment due to modules not importing correctly. Will update as soon as that is working.
 
+<br>
+
 ## Downloading Static JDK for ios-aarch64 and ios-x86_64
 You may obtain the static JDK libs by first cloning Gluon Samples. 
 
