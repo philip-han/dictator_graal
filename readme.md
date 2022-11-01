@@ -55,3 +55,5 @@ From the project root, build and run `app` module with the tracing agent enabled
 ```
 
 Currently, VS Code Gradle extension is not working properly on this project. In order to make it work, you'll have to hard code the path of `speechcore` module. Details are at the bottom of `settings.gradle` file. So, use either commands above or enable/fix the Gradle extension.
+
+Lastly, CoreNLP server should be running for `app:run`. Refer to [Android App](https://github.com/philip-han/Great-Dictator-Android) for the NLP server instructions.
