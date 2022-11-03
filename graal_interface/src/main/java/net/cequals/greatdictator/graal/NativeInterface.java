@@ -75,7 +75,9 @@ public class NativeInterface {
                 if (recognizerStateDispatcher.isNonNull()) recognizerStateDispatcher.invoke(ctx, state);
             },
             (String errorMessage) -> {
-                if (errorDispatcher.isNonNull()) errorDispatcher.invoke(ctx, allocString(errorMessage));
+                var cErrorMessage = allocString(errorMessage);
+                if (errorDispatcher.isNonNull()) errorDispatcher.invoke(ctx, cErrorMessage);
+                free(cErrorMessage);
             }
         );
     }
